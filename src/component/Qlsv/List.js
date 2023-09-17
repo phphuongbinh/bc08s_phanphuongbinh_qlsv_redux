@@ -18,9 +18,10 @@ class List extends Component {
       });
   }
   renderTbody = () => {
-    return this.props.users.map((item, index) => (
-      <Item item={item} key={index} />
-    ));
+    return this.props.users
+      .slice()
+      .reverse()
+      .map((item, index) => <Item item={item} key={index} />);
   };
   render() {
     return (

@@ -30,6 +30,7 @@ class Form extends Component {
       });
   };
   render() {
+    let { id, fullname, email, phone } = this.state;
     return (
       <div className="p-4 border rounded-lg shadow-lg">
         <h1 className="p-3 text-3xl text-gray-800">Thông tin sinh viên</h1>
@@ -40,6 +41,7 @@ class Form extends Component {
               <input
                 type="text"
                 name="id"
+                value={id}
                 onChange={this.handleChangeForm}
                 className="block w-full p-3 mt-2 border rounded-md"
               />
@@ -49,6 +51,7 @@ class Form extends Component {
               <input
                 type="text"
                 name="fullname"
+                value={fullname}
                 onChange={this.handleChangeForm}
                 className="block w-full p-3 mt-2 border rounded-md"
               />
@@ -60,6 +63,7 @@ class Form extends Component {
               <input
                 type="text"
                 name="phone"
+                value={phone}
                 onChange={this.handleChangeForm}
                 className="block w-full p-3 mt-2 border rounded-md"
               />
@@ -69,6 +73,7 @@ class Form extends Component {
               <input
                 type="email"
                 name="email"
+                value={email}
                 onChange={this.handleChangeForm}
                 className="block w-full p-3 mt-2 border rounded-md"
               />
@@ -87,10 +92,16 @@ class Form extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    selectUser: state.userReducer.selectUser,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addUser: (user) => dispatch({ type: ADD_USER, payload: user }),
   };
 };
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
